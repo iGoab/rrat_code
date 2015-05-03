@@ -1,0 +1,14 @@
+cc = gcc
+
+objects = draw_pic.o open_file.o help.o fits_dm_function.o strings_equal.o draw_dm_flux.o
+#objects2 = find_signal.o read_psrfits.o downsample.o write_psrfits.o
+
+cc = gcc
+draw_pic: $(objects)
+		 gcc -o draw_pic $(objects) -L/home/igoab/pulsar_software/pgplot -lcpgplot -lpgplot -lX11 -lgfortran
+
+$(objects):psrfits.h
+
+.PHONY: clean
+clean:
+	-rm draw_pic $(objects) 

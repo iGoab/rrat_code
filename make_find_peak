@@ -1,0 +1,15 @@
+cc = gcc
+
+objects = find_peak_draw.o open_file.o help.o fits_dm_function.o strings_equal.o draw_dm_flux.o print_fits_error.o print_fits_header.o\
+ read_psrfits.o write_psrfits.o downsample.o
+#objects2 = find_signal.o read_psrfits.o downsample.o write_psrfits.o
+
+cc = gcc
+find_peak_draw: $(objects)
+		 gcc -o find_peak_draw $(objects) -L. -lcfitsio -lm -lnsl -L/home/igoab/pulsar_software/pgplot -lcpgplot -lpgplot -lX11 -lgfortran
+
+$(objects):psrfits.h
+
+.PHONY: clean
+clean:
+	-rm draw_pic $(objects) 

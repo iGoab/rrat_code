@@ -1,0 +1,14 @@
+cc = gcc
+
+objects = profits_to_dmdata.o open_file.o help.o fits_dm_function.o strings_equal.o read_psrfits.o downsample.o write_psrfits.o print_fits_header.o print_fits_error.o
+#objects2 = find_signal.o read_psrfits.o downsample.o write_psrfits.o
+
+cc = gcc
+profits_to_dmdata: $(objects)
+		 gcc -o profits_to_dmdata $(objects) -L. -lcfitsio -lm -lnsl -lpthread 
+
+$(objects):psrfits.h
+
+.PHONY: clean
+clean:
+	-rm profits_to_dmdata $(objects1) 

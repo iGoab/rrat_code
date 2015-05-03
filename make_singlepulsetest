@@ -1,0 +1,14 @@
+cc = gcc
+
+objects1 = singlepulse_test.o singlepulse.o open_file.o help.o fits_dm_function.o strings_equal.o baseline.o\
+slfit.o pulse.o open_files.o single_ch.o thresh_1d.o write_pulses.o
+#objects2 = find_signal.o read_psrfits.o downsample.o write_psrfits.o
+
+cc = gcc
+singlepulse: $(objects1)
+		 gcc -o singlepulse $(objects1) -lm
+$(objects):psrfits.h
+
+.PHONY: clean
+clean:
+	-rm pro_dmdata $(objects1) 
