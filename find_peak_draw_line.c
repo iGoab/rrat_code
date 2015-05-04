@@ -620,11 +620,13 @@ int main(int argc, char *argv[])
 			xmin = x_min;
 			xmax = x_max;
 			//ymin = pf.sub.dat_freqs[0];
-			ymin = 2256;
-			ymax = 2195;
+			//ymin = 2256;
+			//ymax = 2195;
+			ymin = pf.sub.dat_freqs[0];
+			ymax = pf.sub.dat_freqs[pf.hdr.nchan - 1];
 			zmin = 0; zmax = 3;
 			
-			cpgenv(xmin, xmax, ymin, ymax, 0, 1);
+			cpgenv(xmin, xmax, 1, ny + 5, 0, 1);
 			cpglab("Time(s)", "Channel(MHz)","");
 	
 			tr[0] = x_min;
@@ -633,8 +635,11 @@ int main(int argc, char *argv[])
 			tr[3] = ymin;
 			tr[4] = 0.0;
 			tr[5] = (ymax - ymin)/ny;
-			
-			cpgimag(plot_chan, nx, ny, 1, nx, 1, ny, lo, hi, tr);
+			float ylims[num];
+			for (i = 0; i < num; i++) ylims[i] = i;
+			//baseline_data(plot_chan, num * pf.hdr.nchan);
+			cpghi2d(plot_chan, nx, ny, 1, nx, 1, ny, dat_x, 0, 1, 1, ylims); 
+			//cpgimag(plot_chan, nx, ny, 1, nx, 1, ny, lo, hi, tr);
 			//cpgaxis("1", xmin, ymin, xmax, ymin, x_min, x_max, 0.0001, 2, 0.3, 0.2, 0.1, 0.0, 0.0);
 			cpgbbuf();
 			cpgend();

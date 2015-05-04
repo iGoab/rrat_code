@@ -1,17 +1,11 @@
 #include "psrfits.h"
 #include "pulse_dm.h"
-#include "/home/igoab/pulsar_software/pgplot/cpgplot.h"
+#include "/home/pulsar_software/pgplot/cpgplot.h"
 
 float max(float a, float b)
 {
 	if ( a < b) return (b);
 	else return (a);
-}
-
-float min(float a, float b)
-{
-	if (a < b) return (a);
-	else return (b);
 }
 
 /* ****************************************
